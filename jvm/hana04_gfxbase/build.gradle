@@ -1,0 +1,62 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: "com.github.johnrengelman.shadow"
+
+shadowJar {
+    mergeServiceFiles()
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    options.generatedSourceOutputDirectory.set(file("build/generated/java/main"))
+}
+
+compileTestJava {
+    options.encoding = "UTF-8"
+    options.generatedSourceOutputDirectory.set(file("build/generated/java/test"))
+}
+
+idea {
+    module {
+        sourceDirs += files(
+                'build/generated/java/main')
+        testSourceDirs += files(
+                'build/generated/java/test')
+        generatedSourceDirs += files(
+                'build/generated/java/main', 'build/generated/java/test')
+    }
+}
+
+dependencies {
+    implementation(project(":hana04_base"))
+    implementation(project.ext.MAVEN.COMMONS_IO)
+    implementation(project.ext.MAVEN.COMMONS_CLI)
+    implementation(project.ext.MAVEN.COMMONS_LANG3)
+    implementation(project.ext.MAVEN.COMMONS_EXEC)
+    implementation(project.ext.MAVEN.GUAVA)
+    implementation(project.ext.MAVEN.SLF4J_API)
+    implementation(project.ext.MAVEN.LOGBACK_CORE)
+    implementation(project.ext.MAVEN.LOGBACK_CLASSIC)
+    implementation(project.ext.MAVEN.TABLE_LAYOUT)
+    implementation(project.ext.MAVEN.VECMATH)
+    implementation(project.ext.MAVEN.MSGPACK_CORE)
+    implementation(project.ext.MAVEN.JSON_IO)
+    implementation(project.ext.MAVEN.JACKSON_DATABIND)
+    implementation(project.ext.MAVEN.DAGGER_COMPILER)
+    implementation(project.ext.MAVEN.COMMONS_MATH3)
+    implementation(project.ext.MAVEN.COMMONS_CODEC)
+
+    compileOnly(project.ext.MAVEN.AUTO_VALUE_ANNOTATIONS)
+    compileOnly(project.ext.MAVEN.AUTO_FACTORY)
+    compileOnly(project.ext.MAVEN.FREEBUILDER)
+
+    annotationProcessor(project.ext.MAVEN.AUTO_VALUE)
+    annotationProcessor(project.ext.MAVEN.AUTO_FACTORY)
+    annotationProcessor(project.ext.MAVEN.FREEBUILDER)
+    annotationProcessor(project.ext.MAVEN.DAGGER_COMPILER)
+
+    testImplementation(project.ext.MAVEN.JUNIT)
+    testImplementation(project.ext.MAVEN.MOCKITO_ALL)
+    testImplementation(project.ext.MAVEN.GOOGLE_TRUTH)
+    testImplementation(project.ext.MAVEN.GOOGLE_TRUTH8)
+}

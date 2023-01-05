@@ -4,7 +4,7 @@
 
 ## Requirments
 
-Java SE 13 or later.
+Java JDK 13 or later.
 
 ## Installation
 

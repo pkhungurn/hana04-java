@@ -1,0 +1,45 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: "com.github.johnrengelman.shadow"
+
+shadowJar {
+    mergeServiceFiles()
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    options.generatedSourceOutputDirectory.set(file("build/generated/java/main"))
+}
+
+compileTestJava {
+    options.encoding = "UTF-8"
+    options.generatedSourceOutputDirectory.set(file("build/generated/java/test"))
+}
+
+idea {
+    module {
+        sourceDirs += files(
+                'build/generated/java/main')
+        testSourceDirs += files(
+                'build/generated/java/test')
+        generatedSourceDirs += files(
+                'build/generated/java/main', 'build/generated/java/test')
+    }
+}
+dependencies {
+    implementation(project(":hana04_base"))
+    implementation(project.ext.MAVEN.VECMATH)
+    implementation(project.ext.MAVEN.COMMONS_LANG3)
+    implementation(project.ext.MAVEN.JAVA_POET)
+    implementation(project.ext.MAVEN.AUTO_SERVICE)
+    implementation(project.ext.MAVEN.FREE_BUILDER)
+    implementation(project.ext.MAVEN.AUTO_FACTORY)
+    implementation(project.ext.MAVEN.DAGGER)
+    implementation(project.ext.MAVEN.MSGPACK_CORE)
+    implementation(project.ext.MAVEN.JAVAX_ANNOTATION)
+
+    annotationProcessor(project.ext.MAVEN.AUTO_SERVICE)
+
+    testImplementation(project.ext.MAVEN.JUNIT)
+    testImplementation(project.ext.MAVEN.MOCKITO_ALL)
+}

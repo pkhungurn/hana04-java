@@ -1,0 +1,69 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: "com.github.johnrengelman.shadow"
+
+shadowJar {
+    mergeServiceFiles()
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    options.generatedSourceOutputDirectory.set(file("build/generated/java/main"))
+}
+
+compileTestJava {
+    options.encoding = "UTF-8"
+    options.generatedSourceOutputDirectory.set(file("build/generated/java/test"))
+}
+
+idea {
+    module {
+        sourceDirs += files(
+                'build/generated/java/main')
+        testSourceDirs += files(
+                'build/generated/java/test')
+        generatedSourceDirs += files(
+                'build/generated/java/main', 'build/generated/java/test')
+    }
+}
+
+dependencies {
+    implementation(project(":hana04_base"))
+    implementation(project(":hana04_gfxbase"))
+    implementation(project(":hana04_serialize"))
+    implementation(project(":hana04_gfxbase_serialize"))
+    implementation(project(":hana04_distrib"))
+    implementation(project(":hana04_formats"))
+    implementation(project(":hana04_shakuyaku"))
+    implementation(project.ext.MAVEN.VECMATH)
+    implementation(project.ext.MAVEN.COMMONS_IO)
+    implementation(project.ext.MAVEN.COMMONS_CLI)
+    implementation(project.ext.MAVEN.COMMONS_LANG3)
+    implementation(project.ext.MAVEN.COMMONS_MATH3)
+    implementation(project.ext.MAVEN.COMMONS_EXEC)
+    implementation(project.ext.MAVEN.GUAVA)
+    implementation(project.ext.MAVEN.SLF4J_API)
+    implementation(project.ext.MAVEN.LOGBACK_CORE)
+    implementation(project.ext.MAVEN.LOGBACK_CLASSIC)
+    implementation(project.ext.MAVEN.JSON_IO)
+    implementation(project.ext.MAVEN.JACKSON_DATABIND)
+    implementation(project.ext.MAVEN.IMAGE_IO_CORE)
+    implementation(project.ext.MAVEN.IMAGE_IO_BMP)
+    implementation(project.ext.MAVEN.IMAGE_IO_TGA)
+    implementation(project.ext.MAVEN.MSGPACK_CORE)
+    implementation(project.ext.MAVEN.DAGGER)
+    implementation(project.ext.MAVEN.JAVAX_ANNOTATION)
+
+    compileOnly(project(":hana04_apt"))
+    compileOnly(project.ext.MAVEN.FREE_BUILDER)
+    compileOnly(project.ext.MAVEN.AUTO_FACTORY)
+
+    annotationProcessor(project(":hana04_apt"))
+    annotationProcessor(project.ext.MAVEN.FREE_BUILDER)
+    annotationProcessor(project.ext.MAVEN.DAGGER_COMPILER)
+    annotationProcessor(project.ext.MAVEN.AUTO_FACTORY)
+
+    testImplementation(project.ext.MAVEN.JUNIT)
+
+    testImplementation(project.ext.MAVEN.MOCKITO_ALL)
+}

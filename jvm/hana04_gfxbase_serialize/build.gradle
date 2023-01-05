@@ -1,0 +1,61 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: "com.github.johnrengelman.shadow"
+
+shadowJar {
+    mergeServiceFiles()
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    options.generatedSourceOutputDirectory.set(file("build/generated/java/main"))
+}
+
+compileTestJava {
+    options.encoding = "UTF-8"
+    options.generatedSourceOutputDirectory.set(file("build/generated/java/test"))
+}
+
+idea {
+    module {
+        sourceDirs += files(
+                'build/generated/java/main')
+        testSourceDirs += files(
+                'build/generated/java/test')
+        generatedSourceDirs += files(
+                'build/generated/java/main', 'build/generated/java/test')
+    }
+}
+
+dependencies {
+    implementation(project(":hana04_base"))
+    implementation(project(":hana04_gfxbase"))
+    implementation(project(":hana04_serialize"))
+    compileOnly(project(":hana04_apt"))
+    implementation(project.ext.MAVEN.VECMATH)
+    implementation(project.ext.MAVEN.COMMONS_IO)
+    implementation(project.ext.MAVEN.COMMONS_CLI)
+    implementation(project.ext.MAVEN.COMMONS_LANG3)
+    implementation(project.ext.MAVEN.COMMONS_MATH3)
+    implementation(project.ext.MAVEN.COMMONS_EXEC)
+    implementation(project.ext.MAVEN.GUAVA)
+    implementation(project.ext.MAVEN.SLF4J_API)
+    implementation(project.ext.MAVEN.LOGBACK_CORE)
+    implementation(project.ext.MAVEN.LOGBACK_CLASSIC)
+    implementation(project.ext.MAVEN.JAVAX_ANNOTATION)
+
+    implementation(project.ext.MAVEN.JSON_IO)
+    implementation(project.ext.MAVEN.JACKSON_DATABIND)
+    compileOnly(project.ext.MAVEN.AUTO_FACTORY)
+    implementation(project.ext.MAVEN.DAGGER)
+    compileOnly(project.ext.MAVEN.FREE_BUILDER)
+    implementation(project.ext.MAVEN.MSGPACK_CORE)
+
+    annotationProcessor(project.ext.MAVEN.AUTO_FACTORY)
+    annotationProcessor(project.ext.MAVEN.DAGGER_COMPILER)
+    annotationProcessor(project.ext.MAVEN.FREE_BUILDER)
+    annotationProcessor(project(":hana04_apt"))
+
+    testImplementation(project.ext.MAVEN.JUNIT)
+    testImplementation(project.ext.MAVEN.MOCKITO_ALL)
+}

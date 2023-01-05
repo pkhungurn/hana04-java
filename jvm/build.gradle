@@ -1,0 +1,83 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.1'
+        classpath "gradle.plugin.com.github.johnrengelman:shadow:7.1.0"
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+
+    String gdxVersion = "1.9.8"
+    String lwjglVersion = "3.3.1"
+    String imageIoVersion = "3.8.2"
+
+    project.ext {
+        MAVEN = [
+                COMMONS_IO                  : 'commons-io:commons-io:2.11.0',
+                COMMONS_CLI                 : 'commons-cli:commons-cli:1.5.0',
+                COMMONS_LANG3               : 'org.apache.commons:commons-lang3:3.12.0',
+                COMMONS_EXEC                : 'org.apache.commons:commons-exec:1.3',
+                GUAVA                       : 'com.google.guava:guava:31.1-jre',
+                SLF4J_API                   : 'org.slf4j:slf4j-api:1.7.36',
+                LOGBACK_CORE                : 'ch.qos.logback:logback-core:1.2.11',
+                LOGBACK_CLASSIC             : 'ch.qos.logback:logback-classic:1.2.11',
+                TABLE_LAYOUT                : 'tablelayout:TableLayout:20050920',
+                JUNIT                       : 'junit:junit:4.13.2',
+                MOCKITO_ALL                 : 'org.mockito:mockito-all:1.10.19',
+                GOOGLE_TRUTH                : 'com.google.truth:truth:1.1.3',
+                GOOGLE_TRUTH8               : 'com.google.truth.extensions:truth-java8-extension:1.1.3',
+                VECMATH                     : 'javax.vecmath:vecmath:1.5.2',
+                MSGPACK_CORE                : 'org.msgpack:msgpack-core:0.9.3',
+                COMMONS_CODEC               : 'commons-codec:commons-codec:1.15',
+                FREE_BUILDER                : 'org.inferred:freebuilder:2.7.0',
+                AUTO_VALUE_ANNOTATIONS      : 'com.google.auto.value:auto-value-annotations:1.9',
+                AUTO_VALUE                  : 'com.google.auto.value:auto-value:1.9',
+                AUTO_FACTORY                : 'com.google.auto.factory:auto-factory:1.0.1',
+                FREEBUILDER                 : 'org.inferred:freebuilder:2.7.0',
+                JSON_IO                     : 'com.cedarsoftware:json-io:4.13.0',
+                JACKSON_DATABIND            : 'com.fasterxml.jackson.core:jackson-databind:2.13.3',
+                DAGGER                      : 'com.google.dagger:dagger:2.43.1',
+                DAGGER_COMPILER             : 'com.google.dagger:dagger-compiler:2.43.1',
+                COMMONS_MATH3               : 'org.apache.commons:commons-math3:3.6.1',
+                GDX                         : "com.badlogicgames.gdx:gdx:$gdxVersion",
+                GDX_BACKEND_LWJGL           : "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion",
+                GDX_PLATFORM                : "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop",
+                GDX_BULLET                  : "com.badlogicgames.gdx:gdx-bullet:$gdxVersion",
+                GDX_BULLET_PLATFORM         : "com.badlogicgames.gdx:gdx-bullet-platform:$gdxVersion:natives-desktop",
+                LWJGL                       : "org.lwjgl:lwjgl:$lwjglVersion",
+                LWJGL_NATIVES_WINDOWS       : "org.lwjgl:lwjgl:$lwjglVersion:natives-windows",
+                LWJGL_NATIVES_LINUX         : "org.lwjgl:lwjgl:$lwjglVersion:natives-linux",
+                LWJGL_GLFW                  : "org.lwjgl:lwjgl-glfw:$lwjglVersion",
+                LWJGL_GLFW_NATIVES_WINDOWS  : "org.lwjgl:lwjgl-glfw:$lwjglVersion:natives-windows",
+                LWJGL_GLFW_NATIVES_LINUX    : "org.lwjgl:lwjgl-glfw:$lwjglVersion:natives-linux",
+                LWJGL_OPENGL                : "org.lwjgl:lwjgl-opengl:$lwjglVersion",
+                LWJGL_OPENGL_NATIVES_WINDOWS: "org.lwjgl:lwjgl-opengl:$lwjglVersion:natives-windows",
+                LWJGL_OPENGL_NATIVES_LINUX  : "org.lwjgl:lwjgl-opengl:$lwjglVersion:natives-linux",
+                LWJGL_STB                   : "org.lwjgl:lwjgl-stb:$lwjglVersion",
+                JAVA_POET                   : 'com.squareup:javapoet:1.11.1',
+                AUTO_SERVICE                : "com.google.auto.service:auto-service:1.0.1",
+                JAVAX_ANNOTATION            : 'javax.annotation:javax.annotation-api:1.3.2',
+                IMAGE_IO_CORE               : "com.twelvemonkeys.imageio:imageio-core:$imageIoVersion",
+                IMAGE_IO_BMP                : "com.twelvemonkeys.imageio:imageio-bmp:$imageIoVersion",
+                IMAGE_IO_TGA                : "com.twelvemonkeys.imageio:imageio-tga:$imageIoVersion",
+                NPY                         : 'org.jetbrains.bio:npy:0.3.5',
+                SPARK_CORE                  : 'com.sparkjava:spark-core:2.9.4',
+                SPARK_FREEMARKER            : 'com.sparkjava:spark-template-freemarker:2.7.1',
+                FREEMARKER                  : 'org.freemarker:freemarker:2.3.31',
+                COMMONS_CSV                 : 'org.apache.commons:commons-csv:1.9.0',
+                JIMFS                       : 'com.google.jimfs:jimfs:1.2',
+        ]
+    }
+}

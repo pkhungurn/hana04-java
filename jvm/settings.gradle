@@ -1,0 +1,36 @@
+rootProject.name = "hana04"
+
+include(":tasuku")
+
+// ID: 10000
+include(":hana04_base")
+
+include(":hana04_apt")
+
+include(":hana04_gfxbase")
+include(":hana04_formats")
+include(":hana04_opengl")
+
+// ID: 30000
+include(":hana04_serialize")
+
+// ID: 35000
+include(":hana04_gfxbase_serialize")
+
+// ID: 40000
+include(":hana04_apt_test")
+
+// ID: 20000
+include(":hana04_distrib")
+
+// ID: 50000
+include(":hana04_shakuyaku")
+
+// ID: 60000
+include(":hana04_botan")
+
+// ID: 70000
+include(":hana04_mikumikubake")
+
+// ID: 170000
+include(":hana04_yuri")

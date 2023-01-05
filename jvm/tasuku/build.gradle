@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: "com.github.johnrengelman.shadow"
+
+shadowJar {
+    mergeServiceFiles()
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    options.generatedSourceOutputDirectory.set(file("build/generated/java/main"))
+}
+
+compileTestJava {
+    options.encoding = "UTF-8"
+    options.generatedSourceOutputDirectory.set(file("build/generated/java/test"))
+}
+
+idea {
+    module {
+        sourceDirs += files(
+                'build/generated/java/main')
+        testSourceDirs += files(
+                'build/generated/java/test')
+        generatedSourceDirs += files(
+                'build/generated/java/main', 'build/generated/java/test')
+    }
+}
+
+dependencies {
+    implementation(project.ext.MAVEN.COMMONS_IO)
+    implementation(project.ext.MAVEN.COMMONS_CLI)
+    implementation(project.ext.MAVEN.COMMONS_LANG3)
+    implementation(project.ext.MAVEN.COMMONS_EXEC)
+    implementation(project.ext.MAVEN.GUAVA)
+    implementation(project.ext.MAVEN.SLF4J_API)
+    implementation(project.ext.MAVEN.LOGBACK_CORE)
+    implementation(project.ext.MAVEN.LOGBACK_CLASSIC)
+    implementation(project.ext.MAVEN.TABLE_LAYOUT)
+}
