@@ -1,6 +1,6 @@
 # hana04-java
 
-`hana04` is a library for object extension and serialization that I, Pramook Khungurn, uses to write research code related to computer graphics and machine learning.
+`hana04` is a library for object extension and serialization that I use to write research code related to computer graphics and machine learning.
 
 ## Requirments
 
